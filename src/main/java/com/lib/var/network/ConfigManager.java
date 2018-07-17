@@ -1,5 +1,6 @@
 package com.lib.var.network;
 
+import com.lib.var.network.callback.LogCallback;
 import okhttp3.Cache;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -52,21 +53,22 @@ public class ConfigManager {
      * 设置基础请求对象类型
      *
      * @param baseReq 类的Class
+     * @param <T>     泛型
      * @return 返回当前对象
      */
-    public ConfigManager baseRequest(Class<?> baseReq) {
+    public <T> ConfigManager baseRequest(Class<T> baseReq) {
         Network.setBaseReq(baseReq);
         return this;
     }
 
     /**
-     * 设置基础返回对象类型
+     * 设置日志打印接口
      *
-     * @param baseResp 类的Class
-     * @return 返回i当前对象
+     * @param callback LogCallback对象
+     * @return 返回当前对象
      */
-    public ConfigManager baseResponse(Class<?> baseResp) {
-        Network.setBaseResp(baseResp);
+    public ConfigManager log(LogCallback callback) {
+        Network.setLog(callback);
         return this;
     }
 

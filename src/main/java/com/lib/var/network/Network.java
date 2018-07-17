@@ -1,5 +1,6 @@
 package com.lib.var.network;
 
+import com.lib.var.network.callback.LogCallback;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 
@@ -19,8 +20,8 @@ public class Network {
     private static String baseUrl;
     /* 基础请求对象类型 */
     private static Class<?> baseReq;
-    /* 基础返回对象类型 */
-    private static Class<?> baseResp;
+    /* 日志打印接口 */
+    private static LogCallback log;
 
     /**
      * 构造方法封装
@@ -69,7 +70,7 @@ public class Network {
      *
      * @return 返回String类型的字符串
      */
-    protected static String getBaseUrl() {
+    static String getBaseUrl() {
         return baseUrl;
     }
 
@@ -87,7 +88,7 @@ public class Network {
      *
      * @return 返回一个对象的Class
      */
-    protected static Class<?> getBaseReq() {
+    static Class<?> getBaseReq() {
         return baseReq;
     }
 
@@ -98,24 +99,6 @@ public class Network {
      */
     static void setBaseReq(Class<?> baseReq) {
         Network.baseReq = baseReq;
-    }
-
-    /**
-     * 获取基础返回对象
-     *
-     * @return 返回对象的Class
-     */
-    protected static Class<?> getBaseResp() {
-        return baseResp;
-    }
-
-    /**
-     * 设置基础返回对象
-     *
-     * @param baseResp 对象的Class
-     */
-    static void setBaseResp(Class<?> baseResp) {
-        Network.baseResp = baseResp;
     }
 
     /**
@@ -134,5 +117,23 @@ public class Network {
      */
     static void setHeaders(Headers headers) {
         Network.headers = headers;
+    }
+
+    /**
+     * 获取日志打印接口
+     *
+     * @return 返回LogCallback对象
+     */
+    public static LogCallback getLog() {
+        return log;
+    }
+
+    /**
+     * 设置日志打印接口
+     *
+     * @param log LogCallback对象
+     */
+    static void setLog(LogCallback log) {
+        Network.log = log;
     }
 }
